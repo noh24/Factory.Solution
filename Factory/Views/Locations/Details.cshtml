@@ -1,0 +1,52 @@
+@{
+  Layout = "_Layout";
+}
+@model Factory.Models.Location
+@using Factory.Models
+@using System
+<h1>Location: @Html.DisplayFor(model => model.Name)</h1>
+<table>
+    <thead>
+      <tr>
+        <th>Engineers</th>
+      </tr>
+    </thead>
+    <tbody>
+        @if (@Model.Engineers.Count == 0)
+        {
+          <td>There are no engineers.</td>
+        }
+        else
+        {
+          @foreach (Engineer engineer in Model.Engineers)
+          {
+            <tr>
+              <td>@Html.ActionLink(@engineer.Name, "Details", "Engineers", new { id = engineer.EngineerId})</td>
+            </tr>
+          }
+        }
+    </tbody>
+  </table>
+  <table>
+    <thead>
+      <tr>
+        <th>Machines</th>
+      </tr>
+    </thead>
+    <tbody>
+      @if (@Model.Machines.Count == 0)
+      {
+        <td>There are no machines.</td>
+      }
+      else
+      {
+        @foreach (Machine machine in Model.Machines)
+        {
+          <tr>
+            <td>@Html.ActionLink(@machine.Name, "Details", "Machines", new { id = machine.MachineId})</td>
+          </tr>
+        }
+      }
+    </tbody>
+  </table>
+<p>@Html.ActionLink("Edit Location", "Edit", new { id = @Model.LocationId})</p>
