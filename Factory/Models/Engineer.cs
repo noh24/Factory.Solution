@@ -15,6 +15,8 @@ namespace Factory.Models
     public Nullable<DateTime> LicenseRenewalDate { get; set; }
     public int EngineerId { get; set; }
     public bool Status { get; set; }
+    public int LocationId { get; set; }
+    public Location Location { get; set; }
     public List<EngineerMachine> EngineerMachine { get; }
   }
 

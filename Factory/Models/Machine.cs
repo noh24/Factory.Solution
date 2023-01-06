@@ -16,6 +16,8 @@ namespace Factory.Models
     public Nullable<DateTime> EnrollmentDate { get; set; }
     public int MachineId { get; set; }
     public int Status { get; set; }
+    public int LocationId { get; set; }
+    public Location Location { get; set; }
     public List<EngineerMachine> EngineerMachine { get; }
 
   }
