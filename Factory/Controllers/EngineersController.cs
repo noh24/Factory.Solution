@@ -31,7 +31,6 @@ namespace Factory.Controllers
     [HttpPost]
     public ActionResult Create(Engineer engineer)
     {
-      // validate
       if (!ModelState.IsValid)
       {
         ViewBag.LocationId = new SelectList(_db.Locations, "LocationId", "Name");
@@ -39,6 +38,10 @@ namespace Factory.Controllers
       }
       else
       {
+        if (engineer.EngineerId == 0)
+        {
+          return RedirectToAction("Create");
+        }
         _db.Engineers.Add(engineer);
         _db.SaveChanges();
         return RedirectToAction("Index");

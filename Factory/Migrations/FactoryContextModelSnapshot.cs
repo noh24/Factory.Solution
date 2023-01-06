@@ -47,7 +47,7 @@ namespace Registrar.Migrations
 
                     b.HasIndex("LocationId");
 
-                    b.ToTable("Engineers");
+                    b.ToTable("Engineers", (string)null);
                 });
 
             modelBuilder.Entity("Factory.Models.EngineerMachine", b =>
@@ -68,7 +68,7 @@ namespace Registrar.Migrations
 
                     b.HasIndex("MachineId");
 
-                    b.ToTable("EngineerMachines");
+                    b.ToTable("EngineerMachines", (string)null);
                 });
 
             modelBuilder.Entity("Factory.Models.Location", b =>
@@ -83,7 +83,7 @@ namespace Registrar.Migrations
 
                     b.HasKey("LocationId");
 
-                    b.ToTable("Locations");
+                    b.ToTable("Locations", (string)null);
                 });
 
             modelBuilder.Entity("Factory.Models.Machine", b =>
@@ -114,7 +114,7 @@ namespace Registrar.Migrations
 
                     b.HasIndex("LocationId");
 
-                    b.ToTable("Machines");
+                    b.ToTable("Machines", (string)null);
                 });
 
             modelBuilder.Entity("Factory.Models.Engineer", b =>

@@ -18,9 +18,12 @@
   @Html.Label("Installment Date")
   @Html.TextBoxFor(model => model.InstallmentDate, new { type="date" })
 
-  @Html.LabelFor(model => model.Location)
-  @Html.DropDownList("LocationId")
+  <div>
+    @Html.LabelFor(model => model.Location)
+    @Html.DropDownList("LocationId")
+  </div>
 
   <input type="submit" value="Add" />
 }
-<p>@Html.ActionLink("Add Machine", "Create")</p>
+<p><strong>NOTE:</strong> You need to have at least one location before you can add a machine!</p>
+<p>Go to @Html.ActionLink("this page", "Create", "Locations") to create a location.</p>
