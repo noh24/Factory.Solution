@@ -1,0 +1,80 @@
+@{
+  Layout = "_Layout";
+}
+@model Factory.Models.Engineer
+@using Factory.Models
+@using System
+<h1>Engineer @Model.Name</h1>
+
+<p>License Renewal Date: @Model.LicenseRenewalDate?.ToString("MM-dd-yyyy")</p>
+
+@if (@Model.EngineerMachines.Count == 0)
+{
+  <p>This engineer has no machines assigned.</p>
+}
+else
+{
+  <h4>Machines Enrolled</h4>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Machine Name</th>
+        <th>Machine Description</th>
+        <th>Machine Status</th>
+        <th>Manage Status</th>
+        <th>Delete Machine</th>
+      </tr>
+    </thead>
+    @foreach(EngineerMachine engineerMachine in Model.EngineerMachines)
+    {
+      <tr>
+        <td>@engineerMachine.Machine.Name</td>
+        <td>@engineerMachine.Machine.Description</td>
+          @if (engineerMachine.Machine.Status == 0) 
+          {
+            <td>
+              Operational
+            </td>
+          }
+          else if (engineerMachine.Machine.Status == 1)
+          {
+            <td>
+              Malfunctioning
+            </td>
+          }
+          else if (engineerMachine.Machine.Status == 2)
+          {
+            <td>
+              Repairing
+            </td>
+          }
+        <td>
+          @using (Html.BeginForm("MachineStatus", "Machines", routeValues: new { id = engineerMachine.EngineerMachineId, source = "Engineers"}))
+          {
+            @if (engineerMachine.Machine.Status == 0)
+            {
+              <input type="submit" value="Malfunction"/>
+            }
+            else if (engineerMachine.Machine.Status == 1)
+            {
+              <input type="submit" value="Repair"/>
+            }
+            else if (engineerMachine.Machine.Status == 2)
+            {
+              <input type="submit" value="Operational"/>
+            }
+          }
+        </td>
+        <td>
+          @using (Html.BeginForm("DeleteMachine", "Engineers", routeValues: new { id = engineerMachine.EngineerMachineId}))
+          {
+            <input type="submit" value="Remove Machine">
+          }
+        </td>
+
+      </tr>
+    }
+  </table>
+}
+<p>@Html.ActionLink("Add Machine To Engineer", "AddMachine", new { id = @Model.EngineerId})</p>
+<p>@Html.ActionLink("Edit Engineer", "Edit", new { id = @Model.EngineerId})</p>

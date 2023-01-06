@@ -1,0 +1,26 @@
+@{
+  Layout = "_Layout";
+}
+@model Factory.Models.Engineer
+<h1>Add Engineer</h1>
+
+@using (Html.BeginForm())
+{
+<p>@Html.ValidationMessageFor(model => model.Name, "", new { @class="text-danger"})</p>
+  @Html.LabelFor(model => model.Name)
+  @Html.TextBoxFor(model => model.Name)
+
+<p>@Html.ValidationMessageFor(model => model.SpecialtyMachine, "", new { @class="text-danger"})</p>
+  @Html.Label("Specialty Machine")
+  @Html.TextBoxFor(model => model.SpecialtyMachine)
+
+<p>@Html.ValidationMessageFor(model => model.LicenseRenewalDate, "", new { @class="text-danger"})</p>
+  @Html.Label("License Renewal Date")
+  @Html.TextBoxFor(model => model.LicenseRenewalDate, new { type="date" })
+
+  @Html.LabelFor(model => model.Location)
+  @Html.DropDownList("LocationId")
+
+  <input type="submit" value="Add" />
+}
+<p>@Html.ActionLink("Add Student", "Create")</p>
