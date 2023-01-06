@@ -8,7 +8,10 @@
   <body>
     <div class="relative container mx-auto p-6 h-screen">
       @await Html.PartialAsync("NavBar")
-      @RenderBody()
+      <div class="container flex flex-col items-center px-6 mx-auto mt-10 space-y-0">
+        @RenderBody()
+      </div>
     </div>
+    @await Html.PartialAsync("Footer")
   </body>
 </html>
