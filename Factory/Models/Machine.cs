@@ -15,23 +15,22 @@ namespace Factory.Models
     [CannotBeFuture]
     public Nullable<DateTime> EnrollmentDate { get; set; }
     public int MachineId { get; set; }
-    public int Status { get; set; }
+    public int Status = 0;
     public int LocationId { get; set; }
     public Location Location { get; set; }
-    public List<EngineerMachine> EngineerMachine { get; }
+    public List<EngineerMachine> EngineerMachines { get; }
 
   }
-  public class CannotBeFutureAttribute : ValidationAttribute
+  public class CannotBeFutureAttribute : RangeAttribute
   {
-    public CannotBeFutureAttribute() { }
-    public string GetErrorMessage() => "You cannot add machines installed in the future.";
-
-    protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+    public CannotBeFutureAttribute()
+      : base(typeof(DateTime),
+              DateTime.MinValue.ToShortDateString(),
+              DateTime.Now.ToShortDateString())
+    { }
+    public override string FormatErrorMessage(string name)
     {
-      var date = (DateTime)value;
-
-      if (DateTime.Compare(date, DateTime.Now) > 0) return new ValidationResult(GetErrorMessage());
-      else return ValidationResult.Success;
+      return $"Enter a date between {Minimum} and {Maximum}.";
     }
   }
 }
