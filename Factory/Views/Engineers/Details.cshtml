@@ -3,9 +3,7 @@
 }
 @model Factory.Models.Engineer
 @using Factory.Models
-@using System
 <h1>Engineer @Model.Name</h1>
-
 <p>License Renewal Date: @Model.LicenseRenewalDate?.ToString("MM-dd-yyyy")</p>
 
 @if (@Model.EngineerMachines.Count == 0)
@@ -14,7 +12,7 @@
 }
 else
 {
-  <h4>Machines Enrolled</h4>
+  <h4>Machines Assigned</h4>
   <table class="table table-striped">
     <thead>
       <tr>

@@ -28,7 +28,7 @@ namespace Factory.Models
     { }
     public override string FormatErrorMessage(string name)
     {
-      return $"Enter a date between {Minimum} and {Maximum}.";
+      return $"Enter a license renewal date isn't already expired.";
     }
   }
 }

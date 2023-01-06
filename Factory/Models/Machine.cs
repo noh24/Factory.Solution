@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 
 namespace Factory.Models
 {
@@ -13,9 +14,9 @@ namespace Factory.Models
 
     [Required(ErrorMessage = "Enter a date")]
     [CannotBeFuture]
-    public Nullable<DateTime> EnrollmentDate { get; set; }
+    public Nullable<DateTime> InstallmentDate { get; set; }
     public int MachineId { get; set; }
-    public int Status = 0;
+    public int Status { get; set; }
     public int LocationId { get; set; }
     public Location Location { get; set; }
     public List<EngineerMachine> EngineerMachines { get; }
@@ -30,7 +31,7 @@ namespace Factory.Models
     { }
     public override string FormatErrorMessage(string name)
     {
-      return $"Enter a date between {Minimum} and {Maximum}.";
+      return $"You cannot add a machine with a future installment date.";
     }
   }
 }
