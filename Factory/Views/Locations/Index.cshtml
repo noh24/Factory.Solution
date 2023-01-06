@@ -10,16 +10,28 @@
 }
 else
 {
-  <ul>
+  <table>
+    <thead>
+      <tr>
+        <th>Location Name</th>
+        <th>Manage</th>
+      </tr>
+    </thead>
+    <tbody>
     @foreach (Location location in Model)
     {
-      <li>@Html.ActionLink($"{location.Name}", "Details", new { id = location.LocationId })</li>
-      @using (Html.BeginForm("Delete", "Locations", routeValues: new {id = location.LocationId}))
-      {
-        <input type="submit" value="Delete">
-      }
+      <tr>
+        <td>@Html.ActionLink($"{location.Name}", "Details", new { id = location.LocationId })</td>
+        <td>
+          @using (Html.BeginForm("Delete", "Locations", routeValues: new {id = location.LocationId}))
+          {
+            <input type="submit" value="Delete">
+          }
+        </td>
+      </tr>
     }
-  </ul>
+    </tbody>
+  </table>
 }
 
 <p>@Html.ActionLink("Add Location", "Create")</p>
