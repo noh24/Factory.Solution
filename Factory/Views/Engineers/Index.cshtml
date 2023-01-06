@@ -14,15 +14,22 @@ else
     <thead>
       <tr>
         <th>Engineer Name</th>
+        <th>Manage</th>
       </tr>
     </thead>
     <tbody>
-    @foreach (Engineer engineer in Model)
-    {
-      <tr>
-        <td>@Html.ActionLink($"{engineer.Name}", "Details", new { id = engineer.EngineerId })</td>
-      </tr>
-    }
+      @foreach (Engineer engineer in Model)
+      {
+        <tr>
+          <td>@Html.ActionLink($"{engineer.Name}", "Details", new { id = engineer.EngineerId })</td>
+          <td>
+            @using (Html.BeginForm("Delete", "Engineers", routeValues: new { id = engineer.EngineerId }))
+            {
+              <input type="submit" value="Delete">
+            }
+          </td>
+        </tr>
+      }
     </tbody>
   </table>
 }
