@@ -25,7 +25,7 @@ namespace Factory.Models
     public FromNowAttribute() { }
     public string GetErrorMessage() => "The date you have entered indicates this engineer's license needs to be renewed. Renew the license before entering.";
 
-    protected override ValidationResults IsValid(object value, ValidationContext validationContext)
+    protected override ValidationResult IsValid(object value, ValidationContext validationContext)
     {
       var date = (DateTime)value;
 

@@ -26,7 +26,7 @@ namespace Factory.Models
     public CannotBeFutureAttribute() { }
     public string GetErrorMessage() => "You cannot add machines installed in the future.";
 
-    protected override ValidationResults IsValid(object value, ValidationContext validationContext)
+    protected override ValidationResult IsValid(object value, ValidationContext validationContext)
     {
       var date = (DateTime)value;
 
