@@ -1,6 +1,11 @@
-<div class="d-flex">
-  <p class="mr-4">@Html.ActionLink("Home", "Index", "Home")</p>
-  <p class="mr-4">@Html.ActionLink("Locations", "Index", "Locations")</p>
-  <p class="mr-4">@Html.ActionLink("Engineers", "Index", "Engineers")</p>
-  <p class="mr-4">@Html.ActionLink("Machines", "Index", "Machines")</p>
-</div>
+<nav class="flex items-center justify-between">
+  <div class="pt-2">
+    <img class="shadow-xl" src="~/assets/images/logo.svg" alt="manage logo">
+  </div>
+  <div class="space-x-6 flex">
+    <p class="py-1 px-3 pt-1 bg-orange-200 rounded-full baseline border-orange-200 shadow-md hover:bg-orange-600 hover:text-white">@Html.ActionLink("Home", "Index", "Home")</p>
+    <p class="py-1 px-3 pt-1 bg-orange-200 rounded-full baseline border-orange-200 shadow-md hover:bg-orange-600 hover:text-white">@Html.ActionLink("Locations", "Index", "Locations")</p>
+    <p class="py-1 px-3 pt-1 bg-orange-200 rounded-full baseline border-orange-200 shadow-md hover:bg-orange-600 hover:text-white">@Html.ActionLink("Engineers", "Index", "Engineers")</p>
+    <p class="py-1 px-3 pt-1 bg-orange-200 rounded-full baseline border-orange-200 shadow-md hover:bg-orange-600 hover:text-white">@Html.ActionLink("Machines", "Index", "Machines")</p>
+  </div>
+</nav>
