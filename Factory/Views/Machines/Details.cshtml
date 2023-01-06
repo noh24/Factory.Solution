@@ -1,0 +1,69 @@
+@{
+  Layout = "_Layout";
+}
+@model Factory.Models.Machine
+@using Factory.Models
+<h1>Machine @Model.Name</h1>
+<p>Machine Description: @Html.DisplayFor(model => model.Description)</p>
+
+@if (@Model.EngineerMachines.Count == 0)
+{
+  <p>This machine has no engineers assigned.</p>
+}
+else
+{
+  <h4>Engineers Assigned</h4>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Engineer Name</th>
+        <th>Engineer Specialty Machine</th>
+        <th>Engineer Status</th>
+        <th>Manage Status</th>
+        <th>Delete Engineer</th>
+      </tr>
+    </thead>
+
+    @foreach (EngineerMachine engineerMachine in Model.EngineerMachines)
+    {
+
+      <tr>
+        <td>@engineerMachine.Engineer.Name</td>
+        <td>@engineerMachine.Engineer.SpecialtyMachine</td>
+        @if (engineerMachine.Engineer.Status == false) 
+          {
+            <td>
+              Available
+            </td>
+          }
+          else if (engineerMachine.Engineer.Status == true)
+          {
+            <td>
+              Busy
+            </td>
+          }
+        <td>
+          @using (Html.BeginForm("MachineStatus", "Machines", routeValues: new { id = engineerMachine.EngineerMachineId }))
+          {
+            @if (engineerMachine.Engineer.Status == false)
+            {
+              <input type="submit" value="Busy" />
+            }
+            else
+            {
+              <input type="submit" value="Available" />
+            }
+          }
+        </td>
+        <td>
+          @using (Html.BeginForm("DeleteMachine", "Machines", routeValues: new { id = engineerMachine.EngineerMachineId }))
+          {
+            <input type="submit" value="Remove Engineer">
+          }
+        </td>
+      </tr>
+    }
+  </table>
+}
+<p>@Html.ActionLink("Add Engineer To Machine", "AddEngineer", new { id = @Model.MachineId })</p>
+<p>@Html.ActionLink("Edit Machine", "Edit", new { id = @Model.MachineId})</p>
