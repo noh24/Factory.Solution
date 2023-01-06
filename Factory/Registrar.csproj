@@ -11,6 +11,11 @@
         <PrivateAssets>all</PrivateAssets>
       </PackageReference>
       <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.0" />
+      <UpToDateCheckBuilt Include="./wwwroot/css/input.css" Set="Css" />
+		  <UpToDateCheckBuilt Include="./../tailwind.config.js" Set="Css" />
     </ItemGroup>
 
+    <Target Name="Tailwind" BeforeTargets="Build">
+      <Exec Command="npm run tw-watch" />
+    </Target>
 </Project>
