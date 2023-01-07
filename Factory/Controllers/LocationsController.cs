@@ -29,6 +29,10 @@ namespace Factory.Controllers
     [HttpPost]
     public ActionResult Create(Location location)
     {
+      if (!ModelState.IsValid)
+      {
+        return View(location);
+      }
       _db.Locations.Add(location);
       _db.SaveChanges();
       return RedirectToAction("Index");
