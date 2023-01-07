@@ -17,7 +17,7 @@
 
 ## Description
 This application allows the users to add and track their engineers and machines.
-<!-- ![Screenshot of Databases](imagelink) -->
+![Screenshot ](./Factory/wwwroot/assets/images/splash-page-screenshot.png)
 
 ## Setup/Installation Requirements
 - Clone this repository to your Desktop:
