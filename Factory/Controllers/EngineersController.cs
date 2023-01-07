@@ -19,7 +19,9 @@ namespace Factory.Controllers
 
     public ActionResult Index()
     {
-      List<Engineer> model = _db.Engineers.ToList();
+      List<Engineer> model = _db.Engineers
+        .Include(engineer => engineer.Location)
+        .ToList();
       return View(model);
     }
 
@@ -51,6 +53,7 @@ namespace Factory.Controllers
     public ActionResult Details(int id)
     {
       Engineer thisEngineer = _db.Engineers
+        .Include(engineer => engineer.Location)
         .Include(engineer => engineer.EngineerMachines)
         .ThenInclude(engineerMachines => engineerMachines.Machine)
         .FirstOrDefault(engineer => engineer.EngineerId == id);
@@ -67,6 +70,11 @@ namespace Factory.Controllers
     [HttpPost]
     public ActionResult Edit(Engineer engineer)
     {
+      if (!ModelState.IsValid)
+      {
+        ViewBag.LocationId = new SelectList(_db.Locations, "LocationId", "Name");
+        return View(engineer);
+      }
       _db.Engineers.Update(engineer);
       _db.SaveChanges();
       return RedirectToAction("Index");
