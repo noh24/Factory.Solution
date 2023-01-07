@@ -3,12 +3,12 @@
 }
 @model Factory.Models.Location
 @using Factory.Models
-@using System
-<h1>Location: @Html.DisplayFor(model => model.Name)</h1>
-<table>
+<h1 class="text-5xl font-bold border-b pb-4 text-darkGrayishBlue">Location <span class="text-brightRed">@Html.DisplayFor(model => model.Name)</span></h1>
+<div class="flex w-1/2">
+<table class="mx-auto shadow-inner text-center capitalize text-lg w-full">
     <thead>
       <tr>
-        <th>Engineers</th>
+        <th class="py-2 font-light">Engineers</th>
       </tr>
     </thead>
     <tbody>
@@ -20,17 +20,17 @@
         {
           @foreach (Engineer engineer in Model.Engineers)
           {
-            <tr>
-              <td>@Html.ActionLink(@engineer.Name, "Details", "Engineers", new { id = engineer.EngineerId})</td>
+            <tr class="odd:bg-slate-50 hover:font-semibold">
+              <td class="py-2">@Html.ActionLink(@engineer.Name, "Details", "Engineers", new { id = engineer.EngineerId})</td>
             </tr>
           }
         }
     </tbody>
   </table>
-  <table>
+  <table class="mx-auto shadow-inner text-center capitalize text-lg w-full">
     <thead>
       <tr>
-        <th>Machines</th>
+        <th class="py-2 font-light">Machines</th>
       </tr>
     </thead>
     <tbody>
@@ -42,11 +42,12 @@
       {
         @foreach (Machine machine in Model.Machines)
         {
-          <tr>
-            <td>@Html.ActionLink(@machine.Name, "Details", "Machines", new { id = machine.MachineId})</td>
+          <tr class="odd:bg-slate-50 hover:font-semibold">
+            <td class="py-2">@Html.ActionLink(@machine.Name, "Details", "Machines", new { id = machine.MachineId})</td>
           </tr>
         }
       }
     </tbody>
   </table>
-<p>@Html.ActionLink("Edit Location", "Edit", new { id = @Model.LocationId})</p>
+</div>
+<p class="px-3 py-1 text-sm shadow-md text-white rounded-full bg-brightRedLight font-semibold hover:text-black hover:bg-brightRedSuperLight focus:outline-none">@Html.ActionLink("Edit Location", "Edit", new { id = @Model.LocationId})</p>

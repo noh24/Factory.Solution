@@ -2,15 +2,17 @@
   Layout = "_Layout";
 }
 @model Factory.Models.Location
-<h1>Edit Location</h1>
-<p>Editing: @Model.Name</p>
-
-@using (Html.BeginForm())
+<h1 class="text-5xl font-bold border-b pb-4 text-darkGrayishBlue">Edit Location <span class="text-brightRed">@Html.DisplayFor(model => model.Name)</span></h1>
+<div class="w-1/2 flex flex-col items-center shadow-inner">
+@using (Html.BeginForm(FormMethod.Post, new { @class="text-lg capitalize text-center flex flex-col py-5"}))
 {
   @Html.HiddenFor(model => model.LocationId)
-
-  @Html.LabelFor(model => model.Name)
-  @Html.TextBoxFor(model => model.Name)
-
-  <input type="submit" value="Update" />
+  <div class="py-3 space-x-3 space-y-3">
+    @Html.LabelFor(model => model.Name, new {@class=" font-semibold"}) :
+    @Html.TextBoxFor(model => model.Name, new { @class="py-1 text-sm rounded-xl text-center border shadow-inner outline-slate-200 text-slate-700 w-2/3"})
+  </div>
+  <div class="py-3">
+    <input type="submit" value="Update"  class="px-3 py-1 text-sm shadow-md text-white rounded-full bg-brightRedLight font-semibold hover:text-black hover:bg-brightRedSuperLight focus:outline-none hover:cursor-pointer"/>
+  </div>
 }
+</div>
