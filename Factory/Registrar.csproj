@@ -16,6 +16,6 @@
     </ItemGroup>
 
     <Target Name="Tailwind" BeforeTargets="Build">
-      <Exec Command="npm run tw-watch" />
+      <Exec Command="npm run tw-build" />
     </Target>
 </Project>
