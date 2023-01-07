@@ -2,31 +2,31 @@
   Layout = "_Layout";
 }
 @model Factory.Models.Machine
-<h1>Edit Machine @Model.Name</h1>
+<h1 class="text-5xl font-bold border-b pb-4 text-darkGrayishBlue">Edit Machine <span
+    class="text-brightRed">@Model.Name</span></h1>
 
-@using (Html.BeginForm())
-{
-  @Html.HiddenFor(model => model.MachineId)
-
-  @Html.LabelFor(model => model.Name)
-  @Html.TextBoxFor(model => model.Name)
-
-  @Html.LabelFor(model => model.Description)
-  @Html.TextBoxFor(model => model.Description)
-
-  @Html.LabelFor(model => model.InstallmentDate)
-  @Html.TextBoxFor(model => model.InstallmentDate, new {type="date"})
-
-  @Html.LabelFor(model => model.Location)
-  @Html.DropDownList("LocationId")
-  
-  <input type="submit" value="Update" />
-
-}
-@using (Html.BeginForm("Delete", "Machines"))
-{
-  @Html.Hidden("id", @Model.MachineId)
-  <input type="submit" value="Delete" />
-}
-
-<p>@Html.ActionLink("Add Machine", "Create")</p>
+<div class="w-1/2 flex flex-col items-center shadow-inner">
+  @using (Html.BeginForm(FormMethod.Post, new { @class = "text-lg text-center flex flex-col py-5" }))
+  {
+    @Html.HiddenFor(model => model.MachineId)
+    <div class="py-3 space-x-3 space-y-3 flex flex-col items-center">
+      @Html.LabelFor(model => model.Name, new {@class=" font-semibold"})
+      @Html.TextBoxFor(model => model.Name, new { @class="py-1 text-sm rounded-xl text-center border shadow-inner outline-slate-200 text-slate-700 w-full"})
+    </div>
+    <div class="py-3 space-x-3 space-y-3 flex flex-col items-center">
+      @Html.LabelFor(model => model.Description, new {@class=" font-semibold"})
+      @Html.TextBoxFor(model => model.Description, new { @class="py-1 text-sm rounded-xl text-center border shadow-inner outline-slate-200 text-slate-700 w-full"})
+    </div>
+    <div class="py-3 space-x-3 space-y-3 flex flex-col items-center">
+      @Html.Label("Installment Date", null, new {@class=" font-semibold"})
+      @Html.TextBoxFor(model => model.InstallmentDate, new {type="date", @class="py-1 text-sm rounded-xl text-center border shadow-inner outline-slate-200 text-slate-700 w-full"})
+    </div>
+    <div class="py-3 space-x-3 space-y-3 flex flex-col items-center">
+      @Html.LabelFor(model => model.Location, new {@class=" font-semibold"})
+      @Html.DropDownList("LocationId", null,new { @class="py-1 text-sm rounded-xl text-center border shadow-inner outline-slate-200 text-slate-700 w-full"})
+    </div>
+    <div class="py-3">
+      <input type="submit" value="Update" class="px-3 py-1 text-sm shadow-md text-white rounded-full bg-brightRedLight font-semibold hover:text-black hover:bg-brightRedSuperLight focus:outline-none hover:cursor-pointer"/>
+    </div>
+  }
+</div>
