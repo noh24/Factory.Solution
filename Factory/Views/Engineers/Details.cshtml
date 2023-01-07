@@ -56,22 +56,22 @@ else
           {
             @if (engineerMachine.Machine.Status == 0)
             {
-              <input type="submit" value="Malfunction"  class="px-3 py-1 text-sm shadow-md text-white rounded-full bg-brightRedLight font-semibold hover:text-black hover:bg-brightRedSuperLight focus:outline-none"/>
+              <input type="submit" value="Malfunction" class="px-3 py-1 text-sm shadow-md text-white rounded-full bg-brightRedLight font-semibold hover:text-black hover:bg-brightRedSuperLight focus:outline-none hover:cursor-pointer"/>
             }
             else if (engineerMachine.Machine.Status == 1)
             {
-              <input type="submit" value="Repair"  class="px-3 py-1 text-sm shadow-md text-white rounded-full bg-brightRedLight font-semibold hover:text-black hover:bg-brightRedSuperLight focus:outline-none"/>
+              <input type="submit" value="Repair" class="px-3 py-1 text-sm shadow-md text-white rounded-full bg-brightRedLight font-semibold hover:text-black hover:bg-brightRedSuperLight focus:outline-none hover:cursor-pointer"/>
             }
             else if (engineerMachine.Machine.Status == 2)
             {
-              <input type="submit" value="Operational"  class="px-3 py-1 text-sm shadow-md text-white rounded-full bg-brightRedLight font-semibold hover:text-black hover:bg-brightRedSuperLight focus:outline-none"/>
+              <input type="submit" value="Operational" class="px-3 py-1 text-sm shadow-md text-white rounded-full bg-brightRedLight font-semibold hover:text-black hover:bg-brightRedSuperLight focus:outline-none hover:cursor-pointer"/>
             }
           }
         </td>
         <td>
           @using (Html.BeginForm("DeleteMachine", "Engineers", routeValues: new { id = engineerMachine.EngineerMachineId }))
           {
-            <input type="submit" value="Remove Machine"  class="px-3 py-1 text-sm shadow-md text-white rounded-full bg-brightRedLight font-semibold hover:text-black hover:bg-brightRedSuperLight focus:outline-none">
+            <input type="submit" value="Remove Machine"  class="px-3 py-1 text-sm shadow-md text-white rounded-full bg-brightRedLight font-semibold hover:text-black hover:bg-brightRedSuperLight focus:outline-none hover:cursor-pointer">
           }
         </td>
 

@@ -19,7 +19,6 @@
 
     <p>@Html.ValidationMessageFor(model => model.LicenseRenewalDate, "", new { @class="text-red-500 font-bold"})</p>
     <div class="py-3 space-x-3 space-y-3 flex flex-col items-center">
-
       @Html.Label("License Renewal Date", null, new {@class=" font-semibold"})
       @Html.TextBoxFor(model => model.LicenseRenewalDate, new { type="date" , @class="py-1 text-sm rounded-xl text-center border shadow-inner outline-slate-200 text-slate-700 w-full"})
     </div>
