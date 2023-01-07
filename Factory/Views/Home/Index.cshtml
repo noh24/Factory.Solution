@@ -2,37 +2,38 @@
   Layout = "_Layout";
 }
 @using Factory.Models
-<h1>Factory Tracker</h1>
-<h2>Locations</h2>
+<h1 class="text-5xl font-bold border-b pb-4">Factory Tracker</h1>
+<hr>
+<h2 class="text-4xl">Locations</h2>
 @if (@Model.Count == 0)
 {
-  <p>There are no locations.</p>
+  <p class="text-2xl">There are no locations.</p>
 }
 else
 {
   @foreach (Location location in Model)
   {
-    <h5>@Html.ActionLink(@location.Name, "Details", "Locations", new { id = location.LocationId })</h5>
-    <table>
+    <h5 class="text-2xl hover:text-brightRed">@Html.ActionLink(@location.Name, "Details", "Locations", new { id = location.LocationId })</h5>
+    <table class="mx-auto w-full shadow-inner text-center capitalize text-lg">
       <thead>
         <tr>
-          <th>Engineers</th>
+          <th class="py-2 font-light">Engineers</th>
         </tr>
       </thead>
       <tbody>
-          @if (location.Engineers.Count == 0)
+        @if (location.Engineers.Count == 0)
+        {
+          <td>There are no engineers.</td>
+        }
+        else
+        {
+          @foreach (Engineer engineer in location.Engineers)
           {
-            <td>There are no engineers.</td>
+            <tr class="odd:bg-slate-50 hover:font-semibold">
+              <td class="py-2">@Html.ActionLink(@engineer.Name, "Details", "Engineers", new { id = engineer.EngineerId})</td>
+            </tr>
           }
-          else
-          {
-            @foreach (Engineer engineer in location.Engineers)
-            {
-              <tr>
-                <td>@Html.ActionLink(@engineer.Name, "Details", "Engineers", new { id = engineer.EngineerId})</td>
-              </tr>
-            }
-          }
+        }
       </tbody>
     </table>
     <table>
