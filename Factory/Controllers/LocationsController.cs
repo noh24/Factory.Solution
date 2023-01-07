@@ -42,7 +42,11 @@ namespace Factory.Controllers
     {
       Location thisLocation = _db.Locations
         .Include(location => location.Engineers)
+          .ThenInclude(engineer => engineer.EngineerMachines)
+          .ThenInclude(engineerMachine => engineerMachine.Machine)
         .Include(location => location.Machines)
+          .ThenInclude(machine => machine.EngineerMachines)
+          .ThenInclude(engineerMachine => engineerMachine.Engineer)
         .FirstOrDefault(location => location.LocationId == id);
       return View(thisLocation);
     }
