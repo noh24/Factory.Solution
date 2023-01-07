@@ -38,7 +38,7 @@ namespace Factory.Controllers
       }
       else
       {
-        if (engineer.EngineerId == 0)
+        if (engineer.LocationId == 0)
         {
           return RedirectToAction("Create");
         }

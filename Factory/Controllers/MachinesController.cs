@@ -39,7 +39,7 @@ namespace Factory.Controllers
       }
       else
       {
-        if (machine.MachineId == 0)
+        if (machine.LocationId == 0)
         {
           return RedirectToAction("Create");
         }
