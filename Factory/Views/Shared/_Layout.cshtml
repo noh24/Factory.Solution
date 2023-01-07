@@ -6,13 +6,11 @@
     <link rel="stylesheet" href="~/css/output.css">
   </head>
   <body>
-    <div class="relative container mx-auto p-6">
+    <div class="min-h-screen">
       @await Html.PartialAsync("NavBar")
       <div class="container flex flex-col items-center px-6 mx-auto mt-10 space-y-6">
         @RenderBody()
       </div>
-    </div>
-    <div class="bottom-0">
       @await Html.PartialAsync("Footer")
     </div>
   </body>
