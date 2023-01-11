@@ -1,8 +1,10 @@
 using Microsoft.EntityFrameworkCore;
+// Identity
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Factory.Models
 {
-  public class FactoryContext : DbContext
+  public class FactoryContext : IdentityDbContext<FactoryManager>
   {
     public DbSet<Engineer> Engineers { get; set; }
     public DbSet<Machine> Machines { get; set; }

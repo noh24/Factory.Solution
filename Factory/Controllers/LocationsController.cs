@@ -4,22 +4,37 @@ using Factory.Models;
 using System.Linq;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+// Authorization
+using Microsoft.AspNetCore.Authorization;
+// Identity
+using Microsoft.AspNetCore.Identity;
+// Async Task Class
+using System.Threading.Tasks;
+// Claim based Authorization
+using System.Security.Claims;
 
 namespace Factory.Controllers
 {
+  [Authorize]
   public class LocationsController : Controller
   {
     private readonly FactoryContext _db;
+    private readonly UserManager<FactoryManager> _userManager;
 
-    public LocationsController(FactoryContext db)
+    public LocationsController(UserManager<FactoryManager> userManager, FactoryContext db)
     {
       _db = db;
+      _userManager = userManager;
     }
 
-    public ActionResult Index()
+    public async Task<ActionResult> Index()
     {
-      List<Location> model = _db.Locations.ToList();
-      return View(model);
+      string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      FactoryManager currentManager = await _userManager.FindByIdAsync(userId);
+      List<Location> managerLocations = _db.Locations
+        .Where(entry => entry.Manager.Id == currentManager.Id)
+        .ToList();
+      return View(managerLocations);
     }
 
     public ActionResult Create()
@@ -27,15 +42,21 @@ namespace Factory.Controllers
       return View();
     }
     [HttpPost]
-    public ActionResult Create(Location location)
+    public async Task<ActionResult> Create(Location location)
     {
-      if (!ModelState.IsValid)
+      if (ModelState.IsValid)
+      {
+        string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        FactoryManager currentManager = await _userManager.FindByIdAsync(userId);
+        location.Manager = currentManager;
+        _db.Locations.Add(location);
+        _db.SaveChanges();
+        return RedirectToAction("Index");
+      }
+      else
       {
         return View(location);
       }
-      _db.Locations.Add(location);
-      _db.SaveChanges();
-      return RedirectToAction("Index");
     }
 
     public ActionResult Details(int id)

@@ -10,5 +10,6 @@ namespace Factory.Models
     public int LocationId { get; set; }
     public List<Engineer> Engineers { get; set; }
     public List<Machine> Machines { get; set; }
+    public FactoryManager Manager { get; set; }
   }
 }

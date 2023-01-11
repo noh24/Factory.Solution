@@ -631,6 +631,12 @@ video {
   gap: 0.75rem;
 }
 
+.space-y-2 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
+}
+
 .space-x-3 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
   margin-right: calc(0.75rem * var(--tw-space-x-reverse));
@@ -770,6 +776,10 @@ video {
   padding-top: 0.5rem;
 }
 
+.text-left {
+  text-align: left;
+}
+
 .text-center {
   text-align: center;
 }
@@ -820,9 +830,9 @@ video {
   color: hsl(227 12% 62% / var(--tw-text-opacity));
 }
 
-.text-brightRed {
+.text-red-400 {
   --tw-text-opacity: 1;
-  color: hsl(12 88% 59% / var(--tw-text-opacity));
+  color: rgb(248 113 113 / var(--tw-text-opacity));
 }
 
 .text-slate-700 {
@@ -833,6 +843,11 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.text-brightRed {
+  --tw-text-opacity: 1;
+  color: hsl(12 88% 59% / var(--tw-text-opacity));
 }
 
 .text-red-500 {
@@ -864,6 +879,11 @@ video {
 
 .outline-slate-200 {
   outline-color: #e2e8f0;
+}
+
+ul {
+  list-style: decimal;
+  list-style-position: inside;
 }
 
 .odd\:bg-slate-50:nth-child(odd) {
@@ -909,9 +929,18 @@ video {
   color: hsl(227 12% 62% / var(--tw-text-opacity));
 }
 
+.hover\:text-veryDarkBlue:hover {
+  --tw-text-opacity: 1;
+  color: hsl(223 12% 13% / var(--tw-text-opacity));
+}
+
 .hover\:text-brightRed:hover {
   --tw-text-opacity: 1;
   color: hsl(12 88% 59% / var(--tw-text-opacity));
+}
+
+.hover\:underline:hover {
+  text-decoration-line: underline;
 }
 
 .focus\:text-black:focus {
